@@ -1,0 +1,89 @@
+hash: c9eb13a5d4954bd614eeec32eb7a79f19bf18ea98682166b024d3b76ff9db6c5
+updated: 2017-05-04T15:09:55.762528046-04:00
+imports:
+- name: github.com/beorn7/perks
+  version: b965b613227fddccbfffe13eae360ed3fa822f8d
+  subpackages:
+  - quantile
+- name: github.com/coreos/clair
+  version: 558661e44bcc0f866ef7312bccc4d88234da3d8d
+  subpackages:
+  - api/v1
+  - database
+  - ext/featurefmt
+  - ext/featurens
+  - ext/imagefmt
+  - ext/notification
+  - ext/versionfmt
+  - ext/vulnmdsrc
+  - ext/vulnsrc
+  - pkg/commonerr
+  - pkg/stopper
+  - pkg/tarutil
+- name: github.com/coreos/go-systemd
+  version: 4f14f6deef2da87e4aa59e6c1c1f3e02ba44c5e1
+  subpackages:
+  - journal
+- name: github.com/coreos/pkg
+  version: 2c77715c4df99b5420ffcae14ead08f52104065d
+  subpackages:
+  - capnslog
+  - timeutil
+- name: github.com/davecgh/go-spew
+  version: 5215b55f46b2b919f50a1df0eaa5886afe4e3b3d
+  subpackages:
+  - spew
+- name: github.com/fatih/color
+  version: 9131ab34cf20d2f6d83fdc67168a5430d1c7dc23
+- name: github.com/fernet/fernet-go
+  version: 1b2437bc582b3cfbb341ee5a29f8ef5b42912ff2
+- name: github.com/golang/protobuf
+  version: 5fc2294e655b78ed8a02082d37808d46c17d7e64
+  subpackages:
+  - proto
+- name: github.com/julienschmidt/httprouter
+  version: 21439ef4d70ba4f3e2a5ed9249e7b03af4019b40
+- name: github.com/kr/text
+  version: 7cafcd837844e784b526369c9bce262804aebc60
+- name: github.com/mattn/go-colorable
+  version: 5411d3eea5978e6cdc258b30de592b60df6aba96
+  repo: https://github.com/mattn/go-colorable
+- name: github.com/mattn/go-isatty
+  version: 57fdcb988a5c543893cc61bce354a6e24ab70022
+  repo: https://github.com/mattn/go-isatty
+- name: github.com/matttproud/golang_protobuf_extensions
+  version: d0c3fe89de86839aecf2e0579c40ba3bb336a453
+  subpackages:
+  - pbutil
+- name: github.com/pborman/uuid
+  version: dee7705ef7b324f27ceb85a121c61f2c2e8ce988
+- name: github.com/pmezard/go-difflib
+  version: e8554b8641db39598be7f6342874b958f12ae1d4
+  subpackages:
+  - difflib
+- name: github.com/prometheus/client_golang
+  version: 67994f177195311c3ea3d4407ed0175e34a4256f
+  subpackages:
+  - prometheus
+- name: github.com/prometheus/client_model
+  version: fa8ad6fec33561be4280a8f0514318c79d7f6cb6
+  subpackages:
+  - go
+- name: github.com/prometheus/common
+  version: dba5e39d4516169e840def50e507ef5f21b985f9
+  subpackages:
+  - expfmt
+  - internal/bitbucket.org/ww/goautoneg
+  - model
+- name: github.com/prometheus/procfs
+  version: 406e5b7bfd8201a36e2bb5f7bdae0b03380c2ce8
+- name: github.com/stretchr/testify
+  version: 5b9da39b66e8e994455c2525c4421c8cc00a7f93
+  subpackages:
+  - assert
+- name: golang.org/x/sys
+  version: e24f485414aeafb646f6fca458b0bf869c0880a1
+  repo: https://go.googlesource.com/sys
+  subpackages:
+  - unix
+testImports: []

@@ -34,7 +34,7 @@ import (
 	"time"
 
 	"github.com/coreos/clair/api/v1"
-	"github.com/coreos/clair/utils/types"
+	"github.com/coreos/clair/database"
 	"github.com/fatih/color"
 	"github.com/kr/text"
 )
@@ -55,7 +55,7 @@ var (
 type vulnerabilityInfo struct {
 	vulnerability v1.Vulnerability
 	feature       v1.Feature
-	severity      types.Priority
+	severity      database.Severity
 }
 
 type By func(v1, v2 vulnerabilityInfo) bool
@@ -103,8 +103,8 @@ func intMain() int {
 	}
 	imageName := flag.Args()[0]
 
-	minSeverity := types.Priority(*flagMinimumSeverity)
-	if !minSeverity.IsValid() {
+	minSeverity, err := database.NewSeverity(*flagMinimumSeverity)
+	if err != nil {
 		flag.Usage()
 		return 1
 	}
@@ -144,7 +144,7 @@ func intMain() int {
 	return 0
 }
 
-func AnalyzeLocalImage(imageName string, minSeverity types.Priority, endpoint, myAddress, tmpPath string) error {
+func AnalyzeLocalImage(imageName string, minSeverity database.Severity, endpoint, myAddress, tmpPath string) error {
 	// Save image.
 	log.Printf("Saving %s to local disk (this may take some time)", imageName)
 	err := save(imageName, tmpPath)
@@ -221,7 +221,7 @@ func AnalyzeLocalImage(imageName string, minSeverity types.Priority, endpoint, m
 	for _, feature := range layer.Features {
 		if len(feature.Vulnerabilities) > 0 {
 			for _, vulnerability := range feature.Vulnerabilities {
-				severity := types.Priority(vulnerability.Severity)
+				severity := database.Severity(vulnerability.Severity)
 				isSafe = false
 
 				if minSeverity.Compare(severity) > 0 {
@@ -272,7 +272,7 @@ func AnalyzeLocalImage(imageName string, minSeverity types.Priority, endpoint, m
 		fmt.Printf("%s No vulnerabilities matching the minimum severity level were detected in your image\n", color.YellowString("NOTE:"))
 	} else {
 		return fmt.Errorf("A total of %d vulnerabilities have been detected in your image", len(vulnerabilities))
-        }
+	}
 
 	return nil
 }
@@ -439,15 +439,15 @@ func getLayer(endpoint, layerID string) (v1.Layer, error) {
 	return *apiResponse.Layer, nil
 }
 
-func coloredSeverity(severity types.Priority) string {
+func coloredSeverity(severity database.Severity) string {
 	red := color.New(color.FgRed).SprintFunc()
 	yellow := color.New(color.FgYellow).SprintFunc()
 	white := color.New(color.FgWhite).SprintFunc()
 
 	switch severity {
-	case types.High, types.Critical:
+	case database.HighSeverity, database.CriticalSeverity:
 		return red(severity)
-	case types.Medium:
+	case database.MediumSeverity:
 		return yellow(severity)
 	default:
 		return white(severity)
