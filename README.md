@@ -13,7 +13,7 @@ This is a basic tool that enables quick analysis of local Docker images with [Cl
 
 First install [Go](https://golang.org/doc/install) and [glide](https://glide.sh) and then run the following commands:
 
-    $ git clone git@github.com:coreos/analyze-local-images.git $HOME/analyze-local-images-gopath/src/github.com/coreos/analyze-local-images
+    $ git clone https://github.com/coreos/analyze-local-images.git $HOME/analyze-local-images-gopath/src/github.com/coreos/analyze-local-images
     $ export GOPATH=$HOME/analyze-local-images-gopath
     $ cd $HOME/analyze-local-images-gopath/src/github.com/coreos/analyze-local-images
     $ glide install
